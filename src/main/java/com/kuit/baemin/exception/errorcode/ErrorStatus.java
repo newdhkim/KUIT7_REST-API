@@ -24,19 +24,23 @@ public enum ErrorStatus {
 
     // ── 주문 ──
     ORDER_NOT_FOUND(HttpStatus.NOT_FOUND, "ORDER404", "존재하지 않는 주문입니다."),
+    ORDER_NOT_OWNER(HttpStatus.FORBIDDEN, "ORDER403", "사용자의 주문이 아닙니다."),
 
-    // ── 주소 ──
+    // ── 식당 ──
     RESTAURANT_NOT_FOUND(HttpStatus.NOT_FOUND, "RESTAURANT404", "존재하지 않는 식당입니다."),
 
     // ── 주소 ──
     ADDRESS_NOT_FOUND(HttpStatus.NOT_FOUND, "ADDRESS404", "존재하지 않는 주소입니다."),
-
-    // ── 주문 ──
+    ADDRESS_NOT_OWNER(HttpStatus.FORBIDDEN, "ADDRESS403", "사용자의 주소가 아닙니다."),
+    // ── 메뉴 ──
     MENU_NOT_FOUND(HttpStatus.NOT_FOUND, "MENU404", "존재하지 않는 메뉴입니다."),
+    MENU_RESTAURANT_MISMATCH(HttpStatus.FORBIDDEN, "MENU403", "해당 식당의 메뉴가 아닙니다."),
 
     // ── 리뷰 ──
-    REVIEW_NOT_FOUND(HttpStatus.NOT_FOUND, "REVIEW404", "존재하지 않는 리뷰입니다.")
-
+    REVIEW_ORDER_MISMATCH(HttpStatus.BAD_REQUEST, "REVIEW400", "본인이 작성한 리뷰가 아닙니다."),
+    REVIEW_NOT_OWNER(HttpStatus.FORBIDDEN, "REVIEW403_1", "해당 주문에 속한 리뷰가 아닙니다."),
+    REVIEW_RESTAURANT_MISMATCH(HttpStatus.FORBIDDEN, "REVIEW403_2", "주문한 식당과 일치하지 않는 식당입니다."),
+    REVIEW_NOT_FOUND(HttpStatus.NOT_FOUND, "REVIEW404", "존재하지 않는 리뷰입니다."),
     ;
 
     private final HttpStatus httpStatus;

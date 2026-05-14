@@ -21,9 +21,10 @@ public class OrderController {
      */
     @GetMapping("/{orderId}")
     @Operation(summary = "주문 상세 조회")
-    public ApiResponse<OrderRes> getOrderById(@PathVariable Long orderId) {
+    public ApiResponse<OrderRes> getOrderById(@PathVariable Long orderId,
+                                              @RequestParam Long userId) {
 
-        return ApiResponse.of(orderService.getOrder(orderId));
+        return ApiResponse.of(orderService.getOrder(orderId, userId));
     }
 
     /**

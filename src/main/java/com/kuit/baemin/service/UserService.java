@@ -13,8 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.kuit.baemin.exception.errorcode.ErrorStatus.INVALID_PASSWORD;
-import static com.kuit.baemin.exception.errorcode.ErrorStatus.USER_NOT_FOUND;
+import static com.kuit.baemin.exception.errorcode.ErrorStatus.*;
 
 @Service
 @RequiredArgsConstructor
@@ -30,7 +29,7 @@ public class UserService {
     public Long signUp(SignUpReq req) {
         // 이메일 중복 확인
         if (userRepository.existsByEmail(req.getEmail())) {
-            throw new UserException(ErrorStatus.DUPLICATE_EMAIL);
+            throw new UserException(DUPLICATE_EMAIL);
         }
 
         User user = User.builder()
@@ -93,8 +92,13 @@ public class UserService {
         if (req.getName() != null)
             user.updateName(req.getName());
 
-        if (req.getEmail() != null)
+        if (req.getEmail() != null) {
+            // 이메일 중복 확인
+            if (userRepository.existsByEmail(req.getEmail())) {
+                throw new UserException(DUPLICATE_EMAIL);
+            }
             user.updateEmail(req.getEmail());
+        }
 
         if (req.getPhoneNumber() != null)
             user.updatePhoneNumber(req.getPhoneNumber());

@@ -1,13 +1,21 @@
-# Build
+# Build & Gradle
 build/
 out/
 target/
-
-# Gradle
 .gradle/
 *.jar
 
-# IntelliJ
+# IntelliJ & IDE
 .idea/
 *.iml
 *.iws
+.vscode/
+
+# Security (Secrets)
+src/main/resources/application.yml
+.env
+application-local.yml
+
+# OS
+.DS_Store
+Thumbs.db

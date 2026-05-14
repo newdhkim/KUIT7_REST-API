@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Entity
 @Getter
 @Builder
-@Table(name = "menu")
+@Table(name = "menus")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Menu extends BaseEntity {
@@ -35,6 +35,6 @@ public class Menu extends BaseEntity {
     private MenuStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_id", nullable = false)
+    @JoinColumn(name = "restaurants_id", nullable = false)
     private Restaurant restaurant;
 }
